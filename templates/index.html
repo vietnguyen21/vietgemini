@@ -1,0 +1,77 @@
+        {% extends "base.html" %}
+        {% block content %}
+        <body style="background-color: white;">
+        <div id="main" style="background-color: white;">
+            <!--sidebar start-->
+            <div id="sidebar">
+                <ul id="sidebar-content">
+                    <li id="head"><a href="/home">Viet GEMINI </a></li>
+                    <li class="content"><a href="/home">Home</a></li>
+                    <li class="content"><a href="/">Logout</a></li>
+                </ul>
+            </div>
+            <div id="nav-tablet">
+                <ul>
+                    <li><i class="ti-menu icon-nav-tablet openbtn"></i></li>
+                    <li><h4>Viet GEMINI</h4></li>
+                </ul>
+            </div>
+            <!--sidebar end-->
+            <div id="container">
+                <div id="content">
+                    <div>
+                        <h1>Response</h1>
+                        <div class="scroll">
+                            {% for response in data %}
+                            <div style="margin-top: 60px;">
+                                <p style="text-align: left;margin-bottom: 30px;">Question: {{response[1]}}</p>
+                                {% for i in response[0] %}
+                                    <p style="text-align: left;">{{i}}</p>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <form action="/home" method="POST">
+                        <div class="container justify-content-left pull-left" style="margin-top: 32px;">
+                              <div class="form-group">
+                                <label for="text">Question</label>
+                                <input type="text" class="form-control" id="text" placeholder="Enter question" name="question">
+                              </div>
+                              <button type="submit" class="btn btn-default">Submit</button>
+                          </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div id="modal" class="modal">
+            <div id="modal-tablet">
+                <div id="modal-tablet-content">
+                    <h4 class="close-menu" style="cursor: pointer;">Close Menu</h4>
+                    <h4 style="padding: 8px 8px;margin: 64px 0;text-align: left;font-size: 24px;">Viet GEMINI</h4>
+                    <ul>
+                        <li class=".close-menu content"><a href="/home">Home</a></li>
+                        <li class=".close-menu content"><a href="/">Log out</a></li>
+                </ul>
+                </div>
+            </div>
+        </div>
+        <script>
+            const openbtn=document.querySelector('.openbtn')
+            const modal=document.querySelector('.modal')
+            const closeBtns=document.querySelectorAll('.close-menu')
+            function Openmodal() {
+                modal.classList.add('open')
+            }
+            function Closemodal() {
+                modal.classList.remove('open')
+            }
+            
+            for (const closeBtn of closeBtns) {
+                closeBtn.addEventListener('click',Closemodal)
+            }
+            openbtn.addEventListener('click',Openmodal)
+        </script>
+        </body>
+        {% endblock %}

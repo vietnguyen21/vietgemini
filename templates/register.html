@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<body style="background-color: black;">
+<div class="materialContainer">
+
+    <div class="box">
+        
+            <div class="title">REGISTER</div>
+            <form action="/register" method="POST">
+            <div class="input">
+                <label for="regname">Username</label>
+                <input type="text" name="regname" id="regname">
+                <span class="spin"></span>
+            </div>
+    
+            <div class="input">
+                <label for="regpass">Password</label>
+                <input type="password" name="regpass" id="regpass">
+                <span class="spin"></span>
+            </div>
+    
+            <div class="input">
+                <label for="reregpass">Repeat Password</label>
+                <input type="password" name="reregpass" id="reregpass">
+                <span class="spin"></span>
+            </div>
+            {% if error == 1%}
+                <p style="margin-top: 8px;">password must contain at least 8 characters and repeat password must be correct</p>
+            {% endif %}
+            <div class="button">
+                <button type="submit"><span>NEXT</span></button>
+            </div>
+            </form>
+     </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="./static/login.js"></script>
+</body>
+{% endblock %}
